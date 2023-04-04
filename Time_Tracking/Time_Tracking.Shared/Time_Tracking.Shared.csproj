@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Time_Tracking.DAL\Time_Tracking.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
