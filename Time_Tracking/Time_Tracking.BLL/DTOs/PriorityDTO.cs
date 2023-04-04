@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Time_Tracking.BLL.DTOs
+﻿namespace Time_Tracking.BLL.DTOs
 {
     public enum Priority
     {
@@ -15,6 +9,8 @@ namespace Time_Tracking.BLL.DTOs
 
     public class PriorityDTO
     {
+
+
         public string Name { get; set; }
     }
 
