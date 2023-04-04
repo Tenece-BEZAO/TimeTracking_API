@@ -12,8 +12,8 @@ using Time_Tracking.DAL.Entities;
 namespace Time_Tracking.DAL.Migrations
 {
     [DbContext(typeof(Time_Tracking_DbContext))]
-    [Migration("20230402035322_initialDB")]
-    partial class initialDB
+    [Migration("20230404091751_createdDBWithSeed")]
+    partial class createdDBWithSeed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -235,13 +235,13 @@ namespace Time_Tracking.DAL.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8df94e59-aa41-4817-ac2f-00e8121f32c2",
+                            ConcurrencyStamp = "6c7445e4-5fe5-4d92-841d-858109cf4f60",
                             EmailConfirmed = false,
                             FirstName = "John",
                             LastName = "Doe",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "06860b72-0e88-4333-a9e2-2e3e49e1c04c",
+                            SecurityStamp = "9063f27b-5dc7-49b7-820a-86d4d513e304",
                             TwoFactorEnabled = false,
                             UserName = "john.doe"
                         },
@@ -249,15 +249,29 @@ namespace Time_Tracking.DAL.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0f01aeb0-667a-4445-a43b-f608ad09e09a",
+                            ConcurrencyStamp = "3d424bee-6bf2-4c14-9d9a-f4d587d8f22b",
                             EmailConfirmed = false,
                             FirstName = "Jane",
                             LastName = "Doe",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ece52bf5-4c47-4d1d-9e00-09ada792126f",
+                            SecurityStamp = "c51ea325-37e4-4b09-ac14-305324877e1a",
                             TwoFactorEnabled = false,
                             UserName = "jane.doe"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "5406e77e-cd35-4039-9f5e-cc25a819bf13",
+                            EmailConfirmed = false,
+                            FirstName = "kendrick",
+                            LastName = "chukwuka",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "228dbac6-593e-446c-bead-31c24f306a45",
+                            TwoFactorEnabled = false,
+                            UserName = "kendrick.chukwuka"
                         });
                 });
 
@@ -334,7 +348,7 @@ namespace Time_Tracking.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 4, 2, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4578),
+                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(2079),
                             Department = "IT",
                             FirstName = "John",
                             LastName = "Doe",
@@ -343,11 +357,20 @@ namespace Time_Tracking.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 4, 2, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4584),
+                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(2081),
                             Department = "HR",
                             FirstName = "Jane",
                             LastName = "Smith",
                             UserId = "2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(2085),
+                            Department = "Softwares",
+                            FirstName = "Kendrick",
+                            LastName = "Chukwuka",
+                            UserId = "3"
                         });
                 });
 
@@ -397,9 +420,9 @@ namespace Time_Tracking.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 4, 2, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(3995),
+                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1703),
                             Description = "There's a bug in the login page",
-                            DueAt = new DateTime(2023, 4, 3, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4014),
+                            DueAt = new DateTime(2023, 4, 5, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1717),
                             EmployeeId = 1,
                             Priority = "Normal",
                             State = "NotStarted",
@@ -408,9 +431,9 @@ namespace Time_Tracking.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 4, 2, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4025),
+                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1730),
                             Description = "Update the user manual with new features",
-                            DueAt = new DateTime(2023, 4, 5, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4028),
+                            DueAt = new DateTime(2023, 4, 7, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1731),
                             EmployeeId = 1,
                             Priority = "Normal",
                             State = "NotStarted",
@@ -419,9 +442,9 @@ namespace Time_Tracking.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 4, 2, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4031),
+                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1732),
                             Description = "Interview candidates for the open position",
-                            DueAt = new DateTime(2023, 4, 4, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4033),
+                            DueAt = new DateTime(2023, 4, 6, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1733),
                             EmployeeId = 2,
                             Priority = "Normal",
                             State = "NotStarted",
@@ -430,13 +453,35 @@ namespace Time_Tracking.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2023, 4, 2, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4036),
+                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1734),
                             Description = "Review resumes of the candidates",
-                            DueAt = new DateTime(2023, 4, 3, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4038),
+                            DueAt = new DateTime(2023, 4, 5, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1734),
                             EmployeeId = 2,
                             Priority = "Normal",
                             State = "NotStarted",
                             Title = "Review resumes"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1735),
+                            Description = "Checking To see workables",
+                            DueAt = new DateTime(2023, 4, 5, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1742),
+                            EmployeeId = 2,
+                            Priority = "Normal",
+                            State = "NotStarted",
+                            Title = "Testing Endpoints"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1743),
+                            Description = "SetUp a sprint",
+                            DueAt = new DateTime(2023, 4, 8, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1744),
+                            EmployeeId = 3,
+                            Priority = "Normal",
+                            State = "NotStarted",
+                            Title = "Run a Race"
                         });
                 });
 

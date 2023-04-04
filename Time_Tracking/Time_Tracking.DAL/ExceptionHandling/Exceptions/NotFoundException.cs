@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Time_Tracking.BLL.Implementations.EmployeeExtension
+﻿namespace Time_Tracking.DAL.Implementations.EmployeeExtension
 {
     public class NotFoundException : ApplicationException
     {
@@ -12,6 +6,8 @@ namespace Time_Tracking.BLL.Implementations.EmployeeExtension
             : base($"Entity {entityName} with ID {entityId} was not found.")
         {
         }
+
+
     }
 }
 

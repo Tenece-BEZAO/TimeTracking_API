@@ -1,8 +1,8 @@
 ﻿using NLog;
-using Time_Tracking.API.ExceptionHandling.Interfaces;
+using Time_Tracking.DAL.ExceptionHandling.Interfaces;
 using ILogger = NLog.ILogger;
 
-namespace Time_Tracking.API.ExceptionHandling.LoggerService
+namespace Time_Tracking.DAL.ExceptionHandling.LoggerService
 {
     public class LoggerManager : ILoggerManager
     {

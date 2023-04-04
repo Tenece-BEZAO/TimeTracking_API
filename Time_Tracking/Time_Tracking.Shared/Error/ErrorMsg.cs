@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Time_Tracking.Shared.Error
+﻿namespace Time_Tracking.Shared.Error
 {
+
+    //custom error msg for authentication
+    //chukwuma might need these
     public static class ErrorMsg
     {
 

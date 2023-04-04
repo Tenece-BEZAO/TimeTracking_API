@@ -1,17 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Time_Tracking.API.ExceptionHandling.Interfaces;
-using Time_Tracking.BLL.Implementations.EmployeeExtension;
-using Time_Tracking.BLL.Interfaces;
+using Time_Tracking.DAL.ExceptionHandling.Interfaces;
+using Time_Tracking.DAL.Implementations.EmployeeExtension;
 using Time_Tracking.Shared.Error;
 
-namespace Time_Tracking.API.ExceptionHandling.Exceptions
+namespace Time_Tracking.DAL.ExceptionHandling.Exceptions
 {
     public static class ExceptionMiddlewareExtensions
     {
@@ -41,6 +35,8 @@ namespace Time_Tracking.API.ExceptionHandling.Exceptions
                             StatusCode = context.Response.StatusCode,
                             Message = contextFeature.Error.Message,
                         }.ToString());
+
+
                     }
                 });
             });

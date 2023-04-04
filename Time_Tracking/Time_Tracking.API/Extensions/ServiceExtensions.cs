@@ -1,11 +1,11 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Time_Tracking.API.ExceptionHandling.Interfaces;
-using Time_Tracking.API.ExceptionHandling.LoggerService;
 using Time_Tracking.BLL.Implementations;
 using Time_Tracking.BLL.Interfaces;
 using Time_Tracking.DAL.Entities;
+using Time_Tracking.DAL.ExceptionHandling.Interfaces;
+using Time_Tracking.DAL.ExceptionHandling.LoggerService;
 using Time_Tracking.DAL.Interfaces;
 
 namespace Time_Tracking.API.Extensions

@@ -15,7 +15,8 @@ namespace Time_Tracking.DAL.Configurations
         {
             builder.HasData(
                 new ApplicationUser { Id = "1", UserName = "john.doe", FirstName = "John", LastName = "Doe" },
-                new ApplicationUser { Id = "2", UserName = "jane.doe", FirstName = "Jane", LastName = "Doe" }
+                new ApplicationUser { Id = "2", UserName = "jane.doe", FirstName = "Jane", LastName = "Doe" },
+                new ApplicationUser { Id = "3", UserName = "kendrick.chukwuka", FirstName = "kendrick", LastName = "chukwuka" }
             );
         }
     }

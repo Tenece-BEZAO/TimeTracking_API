@@ -30,6 +30,14 @@ namespace Time_Tracking.DAL.Configurations
                     LastName = "Smith",
                     Department = "HR",
                     UserId = "2",
+                },
+                new Employee
+                {
+                    Id = 3,
+                    FirstName = "Kendrick",
+                    LastName = "Chukwuka",
+                    Department = "Softwares",
+                    UserId = "3",
                 }
             );
         }

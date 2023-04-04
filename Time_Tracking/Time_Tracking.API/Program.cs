@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using NLog;
 using System.Reflection;
 using Time_Tracking.API.Extensions;
+using Time_Tracking.DAL.ExceptionHandling.Exceptions;
+using Time_Tracking.DAL.ExceptionHandling.Interfaces;
 
 namespace Time_Tracking.API
 {
@@ -16,7 +17,7 @@ namespace Time_Tracking.API
 
             LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 
-           
+
 
             builder.Services.ConfigureCors();
             builder.Services.ConfigureIISIntegration();
@@ -49,9 +50,8 @@ namespace Time_Tracking.API
 
 
 
-            /* var logger = app.Services.GetRequiredService<ILoggerManager>();
-             app.ConfigureExceptionHandler(logger)*/
-            ;
+            var logger = app.Services.GetRequiredService<ILoggerManager>();
+            app.ConfigureExceptionHandler(logger);
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -73,7 +73,7 @@ namespace Time_Tracking.API
 
             app.UseRouting();
             app.UseAuthentication();
-            
+
             app.UseAuthorization();
 
 

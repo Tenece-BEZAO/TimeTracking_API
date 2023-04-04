@@ -7,14 +7,11 @@ using Time_Tracking.DAL.Enums;
 
 namespace Time_Tracking.BLL.DTOs
 {
-    public class TodoDTO
+    public class TodoDTO:CreateTodoDTO
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public DateTime DueAt { get; set; }
-        public TodoStateDTO State { get; set; }
-        public PriorityDTO Priority { get; set; }
-        public DateTime CreatedAt { get; set; }
+
+        public int Id { get; set; }
+     
         
     }
 

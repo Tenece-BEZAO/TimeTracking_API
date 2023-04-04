@@ -50,6 +50,24 @@ namespace Time_Tracking.DAL.Configurations
                     DueAt = DateTime.Now.AddDays(1),
                     EmployeeId = 2,
                     State = State.NotStarted
+                },
+                new Todo
+                {
+                    Id = 5,
+                    Title = "Testing Endpoints",
+                    Description = "Checking To see workables",
+                    DueAt = DateTime.Now.AddDays(1),
+                    EmployeeId = 2,
+                    State = State.NotStarted
+                },
+                new Todo
+                {
+                    Id = 6,
+                    Title = "Run a Race",
+                    Description = "SetUp a sprint",
+                    DueAt = DateTime.Now.AddDays(4),
+                    EmployeeId = 3,
+                    State = State.NotStarted
                 }
             );
         }

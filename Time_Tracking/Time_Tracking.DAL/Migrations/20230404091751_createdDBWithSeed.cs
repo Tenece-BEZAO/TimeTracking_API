@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Time_Tracking.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class initialDB : Migration
+    public partial class createdDBWithSeed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -239,8 +239,9 @@ namespace Time_Tracking.DAL.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "8df94e59-aa41-4817-ac2f-00e8121f32c2", null, false, "John", "Doe", false, null, null, null, null, null, false, "06860b72-0e88-4333-a9e2-2e3e49e1c04c", false, "john.doe" },
-                    { "2", 0, "0f01aeb0-667a-4445-a43b-f608ad09e09a", null, false, "Jane", "Doe", false, null, null, null, null, null, false, "ece52bf5-4c47-4d1d-9e00-09ada792126f", false, "jane.doe" }
+                    { "1", 0, "6c7445e4-5fe5-4d92-841d-858109cf4f60", null, false, "John", "Doe", false, null, null, null, null, null, false, "9063f27b-5dc7-49b7-820a-86d4d513e304", false, "john.doe" },
+                    { "2", 0, "3d424bee-6bf2-4c14-9d9a-f4d587d8f22b", null, false, "Jane", "Doe", false, null, null, null, null, null, false, "c51ea325-37e4-4b09-ac14-305324877e1a", false, "jane.doe" },
+                    { "3", 0, "5406e77e-cd35-4039-9f5e-cc25a819bf13", null, false, "kendrick", "chukwuka", false, null, null, null, null, null, false, "228dbac6-593e-446c-bead-31c24f306a45", false, "kendrick.chukwuka" }
                 });
 
             migrationBuilder.InsertData(
@@ -248,8 +249,9 @@ namespace Time_Tracking.DAL.Migrations
                 columns: new[] { "Id", "CreatedAt", "Department", "FirstName", "LastName", "UpdatedAt", "UserId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 2, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4578), "IT", "John", "Doe", null, "1" },
-                    { 2, new DateTime(2023, 4, 2, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4584), "HR", "Jane", "Smith", null, "2" }
+                    { 1, new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(2079), "IT", "John", "Doe", null, "1" },
+                    { 2, new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(2081), "HR", "Jane", "Smith", null, "2" },
+                    { 3, new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(2085), "Softwares", "Kendrick", "Chukwuka", null, "3" }
                 });
 
             migrationBuilder.InsertData(
@@ -257,10 +259,12 @@ namespace Time_Tracking.DAL.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "DueAt", "EmployeeId", "Priority", "State", "Title", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 2, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(3995), "There's a bug in the login page", new DateTime(2023, 4, 3, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4014), 1, "Normal", "NotStarted", "Fix bug", null },
-                    { 2, new DateTime(2023, 4, 2, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4025), "Update the user manual with new features", new DateTime(2023, 4, 5, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4028), 1, "Normal", "NotStarted", "Update documentation", null },
-                    { 3, new DateTime(2023, 4, 2, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4031), "Interview candidates for the open position", new DateTime(2023, 4, 4, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4033), 2, "Normal", "NotStarted", "Interview candidates", null },
-                    { 4, new DateTime(2023, 4, 2, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4036), "Review resumes of the candidates", new DateTime(2023, 4, 3, 4, 53, 22, 146, DateTimeKind.Local).AddTicks(4038), 2, "Normal", "NotStarted", "Review resumes", null }
+                    { 1, new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1703), "There's a bug in the login page", new DateTime(2023, 4, 5, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1717), 1, "Normal", "NotStarted", "Fix bug", null },
+                    { 2, new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1730), "Update the user manual with new features", new DateTime(2023, 4, 7, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1731), 1, "Normal", "NotStarted", "Update documentation", null },
+                    { 3, new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1732), "Interview candidates for the open position", new DateTime(2023, 4, 6, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1733), 2, "Normal", "NotStarted", "Interview candidates", null },
+                    { 4, new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1734), "Review resumes of the candidates", new DateTime(2023, 4, 5, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1734), 2, "Normal", "NotStarted", "Review resumes", null },
+                    { 5, new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1735), "Checking To see workables", new DateTime(2023, 4, 5, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1742), 2, "Normal", "NotStarted", "Testing Endpoints", null },
+                    { 6, new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1743), "SetUp a sprint", new DateTime(2023, 4, 8, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1744), 3, "Normal", "NotStarted", "Run a Race", null }
                 });
 
             migrationBuilder.CreateIndex(

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Time_Tracking.API.ExceptionHandling.Exceptions
+namespace Time_Tracking.DAL.ExceptionHandling.Exceptions
 {
     public abstract class BadRequestException : Exception
     {

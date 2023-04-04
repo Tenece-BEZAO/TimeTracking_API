@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Time_Tracking.API.ExceptionHandling.Interfaces
+namespace Time_Tracking.DAL.ExceptionHandling.Interfaces
 {
     public interface ILoggerManager
     {
