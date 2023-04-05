@@ -30,11 +30,13 @@ namespace Time_Tracking.API
 
 
             builder.Services.AddSwaggerGen(sw =>
+            {
 
-            sw.SwaggerDoc("v1",
-            new OpenApiInfo { Title = "TimeTrackingAPI", Version = "1.0" }));
+                sw.EnableAnnotations();
+                sw.SwaggerDoc("v1", new OpenApiInfo { Title = "TimeTrackingAPI", Version = "1.0" });
+            });
 
-            ;
+            
 
 
 

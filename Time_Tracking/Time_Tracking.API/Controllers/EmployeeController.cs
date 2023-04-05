@@ -9,6 +9,7 @@ namespace Time_Tracking.API.Controllers
 {
     [ApiController]
     [Route("api")]
+    [SwaggerTag("Employee Operations")]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeService _employeeService;
