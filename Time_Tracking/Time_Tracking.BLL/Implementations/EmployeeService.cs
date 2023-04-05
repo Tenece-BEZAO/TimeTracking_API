@@ -248,7 +248,7 @@ namespace Time_Tracking.BLL.Implementations
             return new UserManagerResponse
             {
 
-                Message = $"Successfully imported todos with IDs: {updatedTaskIdsString}.",
+                Message = $"Successfully imported Pending todos with IDs: {updatedTaskIdsString}.",
                 TodoDtos = todoDtos,
                 IsSuccess = true
             };

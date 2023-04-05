@@ -97,7 +97,7 @@ namespace Time_Tracking.API.Controllers
 
 
 
-        [HttpGet("{employeeId}/todos/import")]
+        [HttpGet("{employeeId}/todos/importPendingTodos")]
         [SwaggerOperation(Summary = "Import Pending Todos")]
         [SwaggerResponse(StatusCodes.Status200OK, Description = "Employee successfully imported Pending Todos", Type = typeof(SuccessResponse))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, Description = "Invalid employee  ID", Type = typeof(ErrorResponse))]
