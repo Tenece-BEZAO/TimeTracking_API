@@ -8,7 +8,6 @@ namespace Time_Tracking.BLL.Repository.Interfaces
     {
         IEnumerable<Todo> GetAllTasks(bool trackChanges);
         Task<Todo> GetTaskAsync(int employeeId, int taskId, bool trackChanges);
-        Task<IEnumerable<Todo>> GetTasksByIdsAsync(GetTaskCollectionRequestDTO request, bool trackChanges);
-        void CreateTask(int employeeId, Todo task);
+
     }
 }

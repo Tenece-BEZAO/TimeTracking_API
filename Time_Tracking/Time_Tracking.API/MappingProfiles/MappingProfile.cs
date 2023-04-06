@@ -13,7 +13,7 @@ namespace Time_Tracking.API.MappingProfiles
 
             CreateMap<CreatingEmployeeDTO, Employee>();
 
-            CreateMap<CreatingTaskDTO, Todo>();
+            CreateMap<UpdatingEmployeeDTO, Employee>();
 
         }
     }

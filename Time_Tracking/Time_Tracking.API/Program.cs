@@ -2,12 +2,13 @@ using NLog;
 using Microsoft.AspNetCore.HttpOverrides;
 using Time_Tracking.API.Extensions;
 using Time_Tracking.BLL.LoggerService;
+using Time_Tracking.DAL.Entities.Seed;
 
 namespace Time_Tracking.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -59,7 +60,9 @@ namespace Time_Tracking.API
 
             app.MapControllers();
 
-            app.Run();
+            await SeedData.EnsurePopulatedAsync(app);
+
+            await app.RunAsync();
         }
     }
 }

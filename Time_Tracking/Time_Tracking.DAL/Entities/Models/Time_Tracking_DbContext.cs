@@ -12,6 +12,7 @@ namespace Time_Tracking.DAL.Entities.Models
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Todo> Tasks { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

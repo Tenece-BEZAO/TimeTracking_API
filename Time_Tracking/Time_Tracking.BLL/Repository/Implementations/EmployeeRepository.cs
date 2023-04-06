@@ -18,10 +18,6 @@ namespace Time_Tracking.BLL.Repository.Implementations
         .ToListAsync();
 
 
-        public async Task<IEnumerable<Employee>> GetEmployeesByIdsAsync(IEnumerable<int> employeeIds, bool trackChanges) =>
-            await FindByCondition(x => employeeIds.Contains(x.Id), trackChanges)
-            .ToListAsync();
-
         public async Task<Employee> GetEmployeeAsync(int employeeId, bool trackChanges)
         {
             var employee = await FindByCondition(c => c.Id.Equals(employeeId), trackChanges)
@@ -32,5 +28,7 @@ namespace Time_Tracking.BLL.Repository.Implementations
         }
 
         public async Task CreateEmployeeAsync(Employee employee) => Create(employee);
+
+        public async Task DeleteEmployeeAsync(Employee employee) => Delete(employee);
     }
 }

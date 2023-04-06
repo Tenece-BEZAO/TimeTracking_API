@@ -19,25 +19,6 @@ namespace Time_Tracking.BLL.Service.Implementations
             _mapper = mapper;
         }
 
-        public void ClockIn(int employeeId)
-        {
-            var clockIn = _repository.Attendance.ClockIn;
-        }
-
-        public void ClockOut(int employeeId)
-        {
-            var clockOut = _repository.Attendance.ClockOut;
-        }
-
-        public async Task<IEnumerable<AttendanceDTO>> GetAttendanceByDateAsync(DateTime date, bool trackChanges)
-        {
-            var attendance = await _repository.Attendance.GetAttendanceByDateAsync(date, trackChanges);
-
-            var attendanceDto = _mapper.Map<IEnumerable<AttendanceDTO>>(attendance);
-
-            return attendanceDto;
-        }
-
         public async Task<IEnumerable<AttendanceDTO>> GetAttendanceByEmployeeAsync(int employeeId)
         {
             var attendance = await _repository.Attendance.GetAttendanceByEmployeeAsync(employeeId);
@@ -45,16 +26,6 @@ namespace Time_Tracking.BLL.Service.Implementations
             var attendanceDto = _mapper.Map<IEnumerable<AttendanceDTO>>(attendance);
 
             return attendanceDto;
-        }
-
-        public async Task<IEnumerable<AttendanceDTO>> GetAttendanceForEmployeesByDateAsync(DateTime date, IEnumerable<int> employeeIds, bool trackChanges)
-        {
-            var attendance = await _repository.Attendance.GetAttendanceForEmployeesByDateAsync(date, employeeIds, trackChanges);
-
-            var attendanceDto = _mapper.Map<IEnumerable<AttendanceDTO>>(attendance);
-
-            return attendanceDto;
-
         }
 
         public async Task<IEnumerable<AttendanceDTO>> GetAllAttendanceAsync(bool trackChanges)

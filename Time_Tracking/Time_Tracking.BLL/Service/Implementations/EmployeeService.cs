@@ -29,17 +29,6 @@ namespace Time_Tracking.BLL.Service.Implementations
             return employeesDto;
         }
 
-        public async Task<IEnumerable<EmployeeDTO>> GetEmployeesByIdsAsync(IEnumerable<int> employeeIds, bool trackChanges)
-        {
-            if (employeeIds is null)
-                throw new IdParametersBadRequestException();
-            var companyEntities = await _repository.Employee.GetEmployeesByIdsAsync(employeeIds, trackChanges);
-            if (employeeIds.Count() != companyEntities.Count())
-                throw new CollectionByIdsBadRequestException();
-            var companiesToReturn = _mapper.Map<IEnumerable<EmployeeDTO>>(companyEntities);
-            return companiesToReturn;
-        }
-
         public async Task<EmployeeDTO> GetEmployeeAsync(int employeeId, bool trackChanges)
         {
             var employee = await _repository.Employee.GetEmployeeAsync(employeeId, trackChanges);
@@ -54,6 +43,8 @@ namespace Time_Tracking.BLL.Service.Implementations
 
         public async Task<EmployeeDTO> CreateEmployeeAsync(CreatingEmployeeDTO employee)
         {
+            if (employee is null)
+                throw new CreatingEmployeeBadRequestException();
             var employeeEntity = _mapper.Map<Employee>(employee);
             await _repository.Employee.CreateEmployeeAsync(employeeEntity);
             await _repository.SaveAsync();
@@ -61,6 +52,25 @@ namespace Time_Tracking.BLL.Service.Implementations
             return employeeToReturn;
         }
 
-        
+        public async Task DeleteEmployeeAsync(int employeeId, bool trackChanges)
+        {
+            var employee = await _repository.Employee.GetEmployeeAsync(employeeId, trackChanges);
+            if (employee is null)
+                throw new EmployeeNotFoundException(employeeId);
+            
+            await _repository.Employee.DeleteEmployeeAsync(employee);
+            await _repository.SaveAsync();
+        }
+
+        public async Task UpdateEmployeeProfileAsync(int employeeId, UpdatingEmployeeDTO employeeToUpdate, bool trackChanges)
+        {
+            if (employeeToUpdate is null)
+                throw new UpdatingEmployeeBadRequestException();
+            var employee = _repository.Employee.GetEmployeeAsync(employeeId, trackChanges);
+            if (employee is null)
+                throw new EmployeeNotFoundException(employeeId);
+            await _mapper.Map(employeeToUpdate, employee);
+            await _repository.SaveAsync();
+        }
     }
 }

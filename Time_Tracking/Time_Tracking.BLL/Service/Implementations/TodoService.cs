@@ -53,7 +53,6 @@ namespace Time_Tracking.BLL.Implementations
             return taskDto;
         }
 
-
         //come back here and try to modify this
         /*public IEnumerable<TaskDTO> GetAllTasks(bool trackChanges)
         {
@@ -74,37 +73,8 @@ namespace Time_Tracking.BLL.Implementations
         }
         */
 
-        public async Task<IEnumerable<TaskDTO>> GetTasksByIdsAsync(GetTaskCollectionRequestDTO request, bool trackChanges)
-        {
-            if (request is null)
-                throw new IdParametersBadRequestException();
+        
 
-            var taskEntities = await _repository.Todo.GetTasksByIdsAsync(request, trackChanges);
 
-            if (request.employeeIds.Count() != taskEntities.Count())
-                throw new CollectionByIdsBadRequestException();
-
-            var tasksToReturn = _mapper.Map<IEnumerable<TaskDTO>>(taskEntities);
-
-            return tasksToReturn;
-        }
-
-        public async Task<TaskDTO> CreateTaskAsync(int employeeId, CreatingTaskDTO creatingTask, bool trackChanges)
-        {
-            var employee = await _repository.Employee.GetEmployeeAsync(employeeId, trackChanges);
-
-            if (employee is null)
-                throw new EmployeeNotFoundException(employeeId);
-
-            var taskEntity = _mapper.Map<Todo>(creatingTask);
-
-            _repository.Todo.CreateTask(employeeId, taskEntity);
-
-            _repository.SaveAsync();
-
-            var taskToReturn = _mapper.Map<TaskDTO>(taskEntity);
-
-            return taskToReturn;
-        }
     }
 }

@@ -9,10 +9,10 @@ namespace Time_Tracking.Presentation.Controllers
     public class AdminsController : Controller
     {
         private readonly IServiceManager _service;
-        public AdminsController(IServiceManager service) => _service = service;  
+        public AdminsController(IServiceManager service) => _service = service;
 
 
-        [HttpGet]
+        [HttpGet("Employees")]
         public async Task<IActionResult> GetEmployeesAsync()
         {
             var employees = await _service.EmployeeService.GetAllEmployeesAsync(trackChanges: false);
@@ -20,7 +20,7 @@ namespace Time_Tracking.Presentation.Controllers
         }
 
 
-        [HttpGet("{id:int}", Name = "EmployeeById")]
+        [HttpGet("EmployeeById", Name = "EmployeeById")]
         public async Task<IActionResult> GetEmployeeAsync(int employeeId)
         {
             var company = await _service.EmployeeService.GetEmployeeAsync(employeeId, trackChanges: false);
@@ -28,15 +28,28 @@ namespace Time_Tracking.Presentation.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("CreateEmployee")]
         public async Task<IActionResult> CreateEmployeeAsync([FromBody] CreatingEmployeeDTO employee)
         {
-            if (employee is null)
-                return BadRequest("CreatingEmployeeDTO object is null");
+
             var createdEmployee = await _service.EmployeeService.CreateEmployeeAsync(employee);
             return CreatedAtRoute("EmployeeById", new { name = createdEmployee.FullName }, createdEmployee);
         }
+        //{id:id}
+        [HttpPut("UpdateEmployeeProfile")]
+        public async Task<IActionResult> UpdateEmployeeProfileAsync(int employeeId, [FromBody] UpdatingEmployeeDTO employee)
+        {
+            await _service.EmployeeService.UpdateEmployeeProfileAsync(employeeId, employee, trackChanges: true);
+            return NoContent();
+        }
 
+        //{id:guid}
+        [HttpDelete("DeleteEmployee")]
+        public async Task<IActionResult> DeleteEmployeeAsync(int employeeId)
+        {
+            await _service.EmployeeService.DeleteEmployeeAsync(employeeId, trackChanges: false);
+            return NoContent();
+        }
 
         [HttpGet("AllAttendanceHistory")]
         public async Task<IActionResult> GetAllAttendanceAsync()
@@ -53,21 +66,5 @@ namespace Time_Tracking.Presentation.Controllers
             return Ok(attendance);
         }
 
-
-        [HttpGet("AllAttendanceByDate")]
-        public async Task<IActionResult> GetAttendanceByDateAsync(DateTime date, bool trackChanges)
-        {
-            var attendance = await _service.AttendanceService.GetAttendanceByDateAsync(date, trackChanges: false);
-            return Ok(attendance);
-        }
-
-
-        [HttpGet("FilterEmployeesAttendanceByDate")]
-        public async Task<IActionResult> GetAttendanceForEmployeesByDateAsync(DateTime date, IEnumerable<int> employeeIds, bool trackChanges)
-        {
-            var attendance = await _service.AttendanceService.GetAttendanceForEmployeesByDateAsync(date, employeeIds, trackChanges: false);
-            return Ok(attendance);
-        }
- 
     }
 }

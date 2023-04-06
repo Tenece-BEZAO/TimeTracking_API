@@ -34,6 +34,14 @@ namespace Time_Tracking.API.Extensions
 
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
                 services.AddDbContext<Time_Tracking_DbContext>(opts =>
-                    opts.UseSqlServer(configuration.GetConnectionString("default")));
+                    opts.UseSqlServer(configuration.GetConnectionString("default"),
+                        sqlServerOptionsAction: sqlOptions =>
+                        {
+                            sqlOptions.EnableRetryOnFailure(
+                                maxRetryCount: 5,
+                                maxRetryDelay: TimeSpan.FromSeconds(30),
+                                errorNumbersToAdd: null);
+                        }));
     }
 }
+
