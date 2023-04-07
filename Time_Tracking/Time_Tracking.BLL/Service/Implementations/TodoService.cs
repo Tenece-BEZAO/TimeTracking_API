@@ -3,6 +3,7 @@ using Time_Tracking.BLL.LoggerService;
 using Time_Tracking.BLL.Repositories;
 using Time_Tracking.BLL.Service.Implementations;
 using Time_Tracking.BLL.Service.Interfaces;
+using Time_Tracking.BLL.Service.Manager;
 using Time_Tracking.DAL.Entities.Exceptions;
 using Time_Tracking.DAL.Entities.Models;
 using Time_Tracking.Shared.DataTransferObjects;
@@ -14,24 +15,16 @@ namespace Time_Tracking.BLL.Implementations
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
-        private readonly EmployeeService _employeeService;
-        public TodoService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, EmployeeService employeeService)
+        public TodoService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
-            _employeeService = employeeService;
-        }
+        }      
 
-        public TodoService(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper)
-        {
-        }
-
-
-        //this broke
         public async Task<IEnumerable<TaskDTO>> GetAllTasksAsync(bool trackChanges)
         {
-            var tasks = (await _employeeService.GetAllEmployeesAsync(trackChanges)).Select(e => e.Tasks).ToList();
+            var tasks = _repository.Todo.GetAllTasks(false);
 
             if (tasks is null)
                 throw new TasksNotFoundException();
@@ -41,39 +34,17 @@ namespace Time_Tracking.BLL.Implementations
             return tasksDto;
         }
 
-        public async Task<TaskDTO> GetTaskAsync(int employeeId, int taskId, bool trackChanges)
+        public async Task<IEnumerable<TaskDTO>> GetTasksByIdAsync(int employeeId, bool trackChanges)
         {
-            var task = await _repository.Todo.GetTaskAsync(employeeId, taskId, trackChanges);
+            var task = await _repository.Todo.GetTasksByIdAsync(employeeId, trackChanges);
 
             if (task is null)
                 throw new TasksNotFoundException();
 
-            var taskDto = _mapper.Map<TaskDTO>(task);
+            var taskDto = _mapper.Map<IEnumerable<TaskDTO>>(task);
 
             return taskDto;
         }
-
-        //come back here and try to modify this
-        /*public IEnumerable<TaskDTO> GetAllTasks(bool trackChanges)
-        {
-            FindAll(trackChanges)
-       .OrderBy(c => c.EmployeeId)
-       .Join(
-           _context.Employees,
-           todo => todo.EmployeeId,
-           employee => employee.Id,
-           (todo, employee) => new TaskDTO
-           {
-               TaskId = todo.Id,
-               TaskName = todo.Name,
-               EmployeeName = employee.Name
-           }
-       )
-       .ToList();
-        }
-        */
-
-        
 
 
     }

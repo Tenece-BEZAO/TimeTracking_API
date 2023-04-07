@@ -12,6 +12,6 @@ namespace Time_Tracking.DAL.Entities.Models
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public IList<Employee> Employees { get; set; }
+        
     }
 }

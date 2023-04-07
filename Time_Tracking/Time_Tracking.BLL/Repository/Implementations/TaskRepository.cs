@@ -18,10 +18,10 @@ namespace Time_Tracking.BLL.Repository.Implementations
             .OrderBy(c => c.EmployeeId)
             .ToList();
 
-        public async Task<Todo> GetTaskAsync(int employeeId, int taskId, bool trackChanges)
+        public async Task<IEnumerable<Todo>> GetTasksByIdAsync(int employeeId, bool trackChanges)
         {
-            return await FindByCondition(t => t.EmployeeId == employeeId && t.Id == taskId, trackChanges)
-                .SingleOrDefaultAsync();
+            return await FindByCondition(t => t.EmployeeId == employeeId, trackChanges)
+                .ToListAsync();
         }       
 
   

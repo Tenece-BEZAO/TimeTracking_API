@@ -2,5 +2,5 @@
 
 namespace Time_Tracking.Shared.DataTransferObjects
 {
-    public record CreatingEmployeeDTO(string FullName, string PhoneNumber, string Email, string Password, string Department, IList<Todo>? Tasks);
+    public record CreatingEmployeeDTO(string FullName, string PhoneNumber, string Email, string Password, string Department);
 }

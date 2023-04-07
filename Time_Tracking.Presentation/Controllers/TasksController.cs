@@ -4,7 +4,7 @@ using Time_Tracking.Shared.DataTransferObjects;
 
 namespace Time_Tracking.Presentation.Controllers
 {
-    [Route("api/employees/{employeeId}")]
+    [Route("api/employees")]
     [ApiController]
     public class TasksController : Controller
     {
@@ -19,10 +19,10 @@ namespace Time_Tracking.Presentation.Controllers
         }
 
         //{id:int}/{taskId:int}
-        [HttpGet("TaskById", Name = "GetTaskForEmployee")]
-        public async Task<IActionResult> GetTaskAsync(int id, int taskId)
+        [HttpGet("TasksById", Name = "GetTaskForEmployee")]
+        public async Task<IActionResult> GetTasksByIdAsync(int employeeId)
         {
-            var task = await _service.TodoService.GetTaskAsync(id, taskId, trackChanges: false);
+            var task = await _service.TodoService.GetTasksByIdAsync(employeeId, trackChanges: false);
             return Ok(task);
         }
 

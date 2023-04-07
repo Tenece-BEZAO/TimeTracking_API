@@ -36,8 +36,7 @@ namespace Time_Tracking.DAL.Entities.Seed
                     FullName = "Alex Doe",
                     PhoneNumber = "0810-000-5678",
                     Email = "a.doe@domain.com",
-                    Password = "12345",
-                    Employees = (IList<Employee>)GetEmployeesWithTasksAndAttendanceHistory()
+                    Password = "12345"
                 }
             };
         }
@@ -51,8 +50,7 @@ namespace Time_Tracking.DAL.Entities.Seed
                     PhoneNumber = "0808-111-1111",
                     Email = "c.doe@domain.com",
                     Password = "11111",
-                    Department = "Bezao",
-                    AdminId = 1,
+                    Department = "Bezao",                    
                     AttendanceHistory = new List<Attendance>()
                     {
                         new Attendance
@@ -120,8 +118,7 @@ namespace Time_Tracking.DAL.Entities.Seed
                     PhoneNumber = "0808-222-2222",
                     Email = "k.doe@domain.com",
                     Password = "22222",
-                    Department = "Bezao",
-                    AdminId = 1,
+                    Department = "Bezao",                    
                     AttendanceHistory = new List<Attendance>()
                     {
                         new Attendance
@@ -191,7 +188,6 @@ namespace Time_Tracking.DAL.Entities.Seed
                     Email = "g.doe@domain.com",
                     Password = "33333",
                     Department = "Bezao",
-                    AdminId = 1,
                     AttendanceHistory = new List<Attendance>()
                     {
                         new Attendance

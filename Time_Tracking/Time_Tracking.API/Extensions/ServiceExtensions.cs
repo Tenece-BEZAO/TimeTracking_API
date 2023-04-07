@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Time_Tracking.BLL.LoggerService;
 using Time_Tracking.BLL.Repositories;
+using Time_Tracking.BLL.Service.Interfaces;
 using Time_Tracking.BLL.Service.Manager;
 using Time_Tracking.DAL.Entities.Models;
 
@@ -31,7 +32,6 @@ namespace Time_Tracking.API.Extensions
 
         public static void ConfigureServiceManager(this IServiceCollection services) =>
                 services.AddScoped<IServiceManager, ServiceManager>();
-
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
                 services.AddDbContext<Time_Tracking_DbContext>(opts =>
                     opts.UseSqlServer(configuration.GetConnectionString("default"),

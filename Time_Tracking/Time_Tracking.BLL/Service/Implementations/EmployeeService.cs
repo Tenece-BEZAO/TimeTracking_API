@@ -66,10 +66,10 @@ namespace Time_Tracking.BLL.Service.Implementations
         {
             if (employeeToUpdate is null)
                 throw new UpdatingEmployeeBadRequestException();
-            var employee = _repository.Employee.GetEmployeeAsync(employeeId, trackChanges);
+            var employee =await _repository.Employee.GetEmployeeAsync(employeeId, trackChanges);
             if (employee is null)
                 throw new EmployeeNotFoundException(employeeId);
-            await _mapper.Map(employeeToUpdate, employee);
+            _mapper.Map(employeeToUpdate, employee);
             await _repository.SaveAsync();
         }
     }
