@@ -2,7 +2,6 @@ using NLog;
 using Microsoft.AspNetCore.HttpOverrides;
 using Time_Tracking.API.Extensions;
 using Time_Tracking.BLL.LoggerService;
-using Time_Tracking.DAL.Entities.Seed;
 
 namespace Time_Tracking.API
 {
@@ -28,6 +27,8 @@ namespace Time_Tracking.API
 
             builder.Services.AddControllers()
                 .AddApplicationPart(typeof(Time_Tracking.Presentation.AssemblyReference).Assembly);
+            
+            
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -57,12 +58,9 @@ namespace Time_Tracking.API
             app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
-
-
+            
             app.MapControllers();
-
-            await SeedData.EnsurePopulatedAsync(app);
-
+            
             await app.RunAsync();
         }
     }

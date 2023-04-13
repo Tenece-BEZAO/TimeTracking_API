@@ -1,5 +1,5 @@
-﻿using Time_Tracking.Shared.DataTransferObjects;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+﻿using Time_Tracking.BLL.DTOs;
+using Time_Tracking.Shared.DataTransferObjects;
 
 namespace Time_Tracking.BLL.Service.Interfaces
 {

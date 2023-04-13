@@ -1,14 +1,11 @@
 ﻿using AutoMapper;
+using Time_Tracking.BLL.DTOs;
 using Time_Tracking.BLL.LoggerService;
 using Time_Tracking.BLL.Repositories;
-using Time_Tracking.BLL.Service.Implementations;
 using Time_Tracking.BLL.Service.Interfaces;
-using Time_Tracking.BLL.Service.Manager;
 using Time_Tracking.DAL.Entities.Exceptions;
-using Time_Tracking.DAL.Entities.Models;
-using Time_Tracking.Shared.DataTransferObjects;
 
-namespace Time_Tracking.BLL.Implementations
+namespace Time_Tracking.BLL.Service.Implementations
 {
     internal sealed class TodoService : ITodoService
     {
@@ -22,26 +19,26 @@ namespace Time_Tracking.BLL.Implementations
             _mapper = mapper;
         }      
 
-        public async Task<IEnumerable<TaskDTO>> GetAllTasksAsync(bool trackChanges)
+        public Task<IEnumerable<TodoDTO>> GetAllTasksAsync(bool trackChanges)
         {
-            var tasks = _repository.Todo.GetAllTasks(false);
+            var tasks =  _repository.Todo.GetAllTasks(false);
 
             if (tasks is null)
                 throw new TasksNotFoundException();
 
-            var tasksDto = _mapper.Map<IEnumerable<TaskDTO>>(tasks);
+            var tasksDto = _mapper.Map<IEnumerable<TodoDTO>>(tasks);
 
-            return tasksDto;
+            return Task.FromResult(tasksDto);
         }
 
-        public async Task<IEnumerable<TaskDTO>> GetTasksByIdAsync(int employeeId, bool trackChanges)
+        public async Task<IEnumerable<TodoDTO>> GetTasksByIdAsync(int employeeId, bool trackChanges)
         {
             var task = await _repository.Todo.GetTasksByIdAsync(employeeId, trackChanges);
 
             if (task is null)
                 throw new TasksNotFoundException();
 
-            var taskDto = _mapper.Map<IEnumerable<TaskDTO>>(task);
+            var taskDto = _mapper.Map<IEnumerable<TodoDTO>>(task);
 
             return taskDto;
         }

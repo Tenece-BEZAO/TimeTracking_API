@@ -1,4 +1,4 @@
-﻿using Time_Tracking.Shared.DataTransferObjects;
+﻿using Time_Tracking.BLL.DTOs;
 
 namespace Time_Tracking.BLL.Service.Interfaces
 {

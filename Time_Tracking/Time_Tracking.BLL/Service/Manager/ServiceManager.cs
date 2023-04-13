@@ -4,6 +4,7 @@ using Time_Tracking.BLL.LoggerService;
 using Time_Tracking.BLL.Repositories;
 using Time_Tracking.BLL.Service.Implementations;
 using Time_Tracking.BLL.Service.Interfaces;
+using EmployeeService = Time_Tracking.BLL.Service.Implementations.EmployeeService;
 
 namespace Time_Tracking.BLL.Service.Manager
 {
