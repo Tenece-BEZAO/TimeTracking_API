@@ -29,7 +29,7 @@ namespace Time_Tracking.Presentation.Controllers
 
 
         [HttpPost("CreateEmployee")]
-        public async Task<IActionResult> CreateEmployeeAsync([FromBody] CreatingEmployeeDTO employee)
+        public async Task<IActionResult> CreateEmployeeAsync([FromBody] CreatingEmployeeDto employee)
         {
 
             var createdEmployee = await _service.EmployeeService.CreateEmployeeAsync(employee);

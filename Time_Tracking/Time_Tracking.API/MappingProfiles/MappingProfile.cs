@@ -11,7 +11,7 @@ namespace Time_Tracking.API.MappingProfiles
         {
             CreateMap<Employee, EmployeeDTO>();
 
-            CreateMap<CreatingEmployeeDTO, Employee>();
+            CreateMap<CreatingEmployeeDto, Employee>();
 
             CreateMap<UpdatingEmployeeDTO, Employee>();
 

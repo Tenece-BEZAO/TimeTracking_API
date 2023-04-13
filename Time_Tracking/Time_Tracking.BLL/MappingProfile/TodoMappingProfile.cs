@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using Time_Tracking.BLL.DTOs;
 using Time_Tracking.DAL.Entities;
-using Time_Tracking.DAL.Enums;
-using Priority = Time_Tracking.DAL.Enums.Priority;
+using Priority = Time_Tracking.DAL.Entities.Enums.Priority;
 
 namespace Time_Tracking.BLL.MappingProfile
 {

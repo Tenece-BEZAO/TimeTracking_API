@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Time_Tracking.DAL.Entities.Enums;
 using Time_Tracking.DAL.Entities.Models;
-using Time_Tracking.DAL.Enums;
 
 namespace Time_Tracking.DAL.Entities.Seed
 {

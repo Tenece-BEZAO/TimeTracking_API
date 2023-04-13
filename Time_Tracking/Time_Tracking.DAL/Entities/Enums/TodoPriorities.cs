@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Time_Tracking.DAL.Enums
+﻿namespace Time_Tracking.DAL.Entities.Enums
 {
     public enum Priority
     {

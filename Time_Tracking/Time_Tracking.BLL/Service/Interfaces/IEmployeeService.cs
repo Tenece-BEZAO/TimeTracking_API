@@ -7,7 +7,7 @@ namespace Time_Tracking.BLL.Service.Interfaces
     {
         Task<IEnumerable<EmployeeDTO>> GetAllEmployeesAsync(bool trackChanges);       
         Task<EmployeeDTO> GetEmployeeAsync(int employeeId, bool trackChanges);
-        Task<EmployeeDTO> CreateEmployeeAsync(CreatingEmployeeDTO employee);
+        Task<EmployeeDTO> CreateEmployeeAsync(CreatingEmployeeDto employee);
         Task DeleteEmployeeAsync(int employeeId, bool trackChanges);
         Task UpdateEmployeeProfileAsync(int employeeId, UpdatingEmployeeDTO employeeToUpdate, bool trackChanges);
     }

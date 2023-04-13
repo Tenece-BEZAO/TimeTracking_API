@@ -1,4 +1,4 @@
-﻿using Time_Tracking.DAL.Enums;
+﻿using Time_Tracking.DAL.Entities.Enums;
 
 namespace Time_Tracking.DAL.Entities.Models
 {

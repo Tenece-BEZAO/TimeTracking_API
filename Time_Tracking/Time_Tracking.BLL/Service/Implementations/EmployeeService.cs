@@ -41,7 +41,7 @@ namespace Time_Tracking.BLL.Service.Implementations
             return employeeDto;
         }
 
-        public async Task<EmployeeDTO> CreateEmployeeAsync(CreatingEmployeeDTO employee)
+        public async Task<EmployeeDTO> CreateEmployeeAsync(CreatingEmployeeDto employee)
         {
             if (employee is null)
                 throw new CreatingEmployeeBadRequestException();

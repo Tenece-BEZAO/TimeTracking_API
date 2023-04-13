@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Time_Tracking.DAL.Entities;
-using Time_Tracking.DAL.Enums;
 
 namespace Time_Tracking.DAL.Configurations
 {
@@ -36,7 +35,7 @@ namespace Time_Tracking.DAL.Configurations
                     Id = 3,
                     FirstName = "Kendrick",
                     LastName = "Chukwuka",
-                    Department = "Softwares",
+                    Department = "Software",
                     UserId = "3",
                 }
             );
