@@ -6,6 +6,7 @@ using Time_Tracking.BLL.DTOs;
 using Time_Tracking.BLL.Interfaces;
 using Time_Tracking.DAL.DTOs;
 using Time_Tracking.DAL.Entities;
+using Time_Tracking.DAL.Entities.Enums;
 using Time_Tracking.DAL.ExceptionHandling.Interfaces;
 using Time_Tracking.DAL.Implementations.EmployeeExtension;
 using Time_Tracking.DAL.Interfaces;
@@ -22,7 +23,8 @@ namespace Time_Tracking.BLL.Implementations
         private readonly IMapper _mapper;
         private readonly ILoggerManager _logger;
 
-        public EmployeeService(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, IMapper mapper, ILoggerManager logger)
+        public EmployeeService(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, IMapper mapper,
+            ILoggerManager logger)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
@@ -31,7 +33,6 @@ namespace Time_Tracking.BLL.Implementations
             _todoRepo = _unitOfWork.GetRepository<Todo>();
             _attendanceRepo = _unitOfWork.GetRepository<Attendance>();
             _employeeRepo = _unitOfWork.GetRepository<Employee>();
-
         }
 
 
@@ -40,7 +41,6 @@ namespace Time_Tracking.BLL.Implementations
             var employee = await _userManager.FindByIdAsync(employeeId);
             if (employee == null)
             {
-
                 _logger.LogError("Invalid Employee Id");
             }
 
@@ -66,7 +66,6 @@ namespace Time_Tracking.BLL.Implementations
             var user = await _userManager.FindByIdAsync(employeeId);
             if (user == null)
             {
-
                 _logger.LogError($"User with ID {employeeId} not found.");
             }
 
@@ -83,12 +82,11 @@ namespace Time_Tracking.BLL.Implementations
 
             if (attendance == null)
             {
-
                 _logger.LogInfo($"User with ID {employeeId} has not clocked in yet.");
             }
+
             if (attendance.ClockOut.HasValue)
             {
-
                 _logger.LogInfo("Employee has already clocked out for today.");
             }
 
@@ -100,7 +98,6 @@ namespace Time_Tracking.BLL.Implementations
 
             return $"Employee {employeeName} has clocked out at {attendance.ClockOut}.";
         }
-
 
 
         public async Task<UserManagerResponse> CreateTaskAsync(string employeeId, CreateTodoDTO createTodoDto)
@@ -130,23 +127,12 @@ namespace Time_Tracking.BLL.Implementations
         }
 
 
-
-
-
         public async Task<UserManagerResponse> StartTaskAsync(string employeeId, int todoId)
         {
             var employeeIdInt = int.Parse(employeeId);
             var employee = await _employeeRepo.GetByIdAsync(employeeIdInt);
-            if (employee == null)
-            {
-                _logger.LogError("Employee not found");
-            }
 
             var todo = await _todoRepo.GetByIdAsync(todoId);
-            if (todo == null)
-            {
-                _logger.LogInfo("Todo not found");
-            }
 
             if (todo.State == State.NotStarted)
             {
@@ -162,16 +148,14 @@ namespace Time_Tracking.BLL.Implementations
             todoDto.Priority = _mapper.Map<PriorityDTO>(todo.Priority);
 
 
-
             return new UserManagerResponse
             {
-                Message = $"The employee {employee.FirstName} {employee.LastName} has started the todo with a title of {todoDto.Title}.",
+                Message =
+                    $"The employee {employee.FirstName} {employee.LastName} has started the todo with a title of {todoDto.Title}.",
                 TodoDto = todoDto,
                 IsSuccess = true
             };
-
         }
-
 
 
         public async Task<IEnumerable<TodoDTO>> GetDailySummaryAsync(string employeeId)
@@ -186,8 +170,8 @@ namespace Time_Tracking.BLL.Implementations
 
             var todos = await _todoRepo.GetAllAsync(
                 filter: t => t.Employee.Id == int.Parse(employee.Id)
-                    && t.CreatedAt.Date == today
-                    && t.State == State.InProgress, // Filter tasks that are in progress
+                             && t.CreatedAt.Date == today
+                             && t.State == State.InProgress, // Filter tasks that are in progress
                 include: q => q.Include(t => t.Employee));
 
             var todoDtos = _mapper.Map<IEnumerable<TodoDTO>>(todos)
@@ -196,9 +180,6 @@ namespace Time_Tracking.BLL.Implementations
 
             return todoDtos;
         }
-
-
-
 
 
         public async Task<UserManagerResponse> ImportPendingTasksAsync(string employeeId)
@@ -215,7 +196,6 @@ namespace Time_Tracking.BLL.Implementations
 
             var overdueTasks = employee.Todos.Where(t => t.DueAt < DateTime.Now && t.State != State.Completed);
             var pendingTasks = employee.Todos.Where(t => t.State == State.InProgress || t.State == State.Paused);
-
 
 
             var updatedTaskIds = new StringBuilder();
@@ -238,19 +218,16 @@ namespace Time_Tracking.BLL.Implementations
             var updatedTaskIdsString = updatedTaskIds.ToString().TrimEnd(',');
 
             var todoDtos = overdueTasks.Concat(pendingTasks)
-                                        .Select(t => _mapper.Map<TodoDTO>(t))
-                                        .ToList();
+                .Select(t => _mapper.Map<TodoDTO>(t))
+                .ToList();
 
             return new UserManagerResponse
             {
-
                 Message = $"Successfully imported Pending todos with IDs: {updatedTaskIdsString}.",
                 TodoDtos = todoDtos,
                 IsSuccess = true
             };
-
         }
-
 
 
         public async Task<UserManagerResponse> StopTaskAsync(string employeeId, int todoId)
@@ -262,7 +239,8 @@ namespace Time_Tracking.BLL.Implementations
                 throw new NotFoundException(nameof(Employee), employeeId);
             }
 
-            var task = await _todoRepo.GetFirstOrDefaultAsync(t => t.EmployeeId == int.Parse(employeeId) && t.Id == todoId);
+            var task = await _todoRepo.GetFirstOrDefaultAsync(t =>
+                t.EmployeeId == int.Parse(employeeId) && t.Id == todoId);
             if (task == null)
             {
                 throw new NotFoundException(nameof(Todo), todoId.ToString());
@@ -270,7 +248,6 @@ namespace Time_Tracking.BLL.Implementations
 
             if (task.State != State.InProgress)
             {
-
                 _logger.LogInfo("Task is not in progress.");
             }
 
@@ -284,12 +261,11 @@ namespace Time_Tracking.BLL.Implementations
 
             return new UserManagerResponse
             {
-                Message = $"The employee {employee.FirstName} {employee.LastName} has stopped the task with a title of {todoDto.Title} .",
+                Message =
+                    $"The employee {employee.FirstName} {employee.LastName} has stopped the task with a title of {todoDto.Title} .",
                 TodoDto = todoDto,
                 IsSuccess = true
             };
         }
-
-
     }
 }

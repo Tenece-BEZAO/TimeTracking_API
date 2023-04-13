@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using Time_Tracking.DAL.Entities.Models;
 
 namespace Time_Tracking.BLL.DTOs
 {
-    public class EmployeeDTO
+    public class EmployeeDTO : Employee
     {
         public int Id { get; set; }
 
@@ -18,6 +14,8 @@ namespace Time_Tracking.BLL.DTOs
         [StringLength(50, ErrorMessage = "LastName length should be between 5 to 50 characters", MinimumLength = 5)]
         public string LastName { get; set; }
 
+        public string FullName { get; set; }
+        
         [Required(ErrorMessage = "Department name is required")]
         [StringLength(50, ErrorMessage = "Department length should be between 5 to 50 characters", MinimumLength = 5)]
         public string Department { get; set; }

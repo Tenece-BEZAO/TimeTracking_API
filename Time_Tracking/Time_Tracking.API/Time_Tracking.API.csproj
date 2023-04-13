@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Time_Tracking.Presentation\Time_Tracking.Presentation.csproj" />
     <ProjectReference Include="..\Time_Tracking.BLL\Time_Tracking.BLL.csproj" />
     <ProjectReference Include="..\Time_Tracking.Shared\Time_Tracking.Shared.csproj" />
   </ItemGroup>

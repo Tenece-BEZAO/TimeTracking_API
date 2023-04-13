@@ -10,9 +10,6 @@ namespace Time_Tracking.BLL.Repository.Implementations
         public AttendanceRepository(Time_Tracking_DbContext time_Tracking_DbContext) : base(time_Tracking_DbContext)
         { }
 
-        
-       
-
         public async Task<IEnumerable<Attendance>> GetAttendanceByEmployeeAsync(int employeeId)
         {
             return await FindByCondition(a => a.EmployeeId == employeeId).ToListAsync();
