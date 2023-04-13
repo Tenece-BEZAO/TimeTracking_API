@@ -2,10 +2,7 @@
 {
     public class TodoDTO : CreateTodoDTO
     {
-
         public int Id { get; set; }
-
-
     }
 
 

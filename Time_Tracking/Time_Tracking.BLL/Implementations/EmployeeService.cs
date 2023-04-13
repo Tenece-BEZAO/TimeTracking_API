@@ -106,7 +106,7 @@ namespace Time_Tracking.BLL.Implementations
 
         public async Task<UserManagerResponse> CreateTaskAsync(string employeeId, CreateTodoDTO createTodoDto)
         {
-            int employeeIdInt = Int32.Parse(employeeId);
+            var employeeIdInt = int.Parse(employeeId);
             var employee = await _employeeRepo.GetByIdAsync(employeeIdInt);
             if (employee == null)
             {
@@ -136,18 +136,16 @@ namespace Time_Tracking.BLL.Implementations
 
         public async Task<UserManagerResponse> StartTaskAsync(string employeeId, int todoId)
         {
-            int employeeIdInt = Int32.Parse(employeeId);
+            var employeeIdInt = int.Parse(employeeId);
             var employee = await _employeeRepo.GetByIdAsync(employeeIdInt);
             if (employee == null)
             {
-
                 _logger.LogError("Employee not found");
             }
 
             var todo = await _todoRepo.GetByIdAsync(todoId);
             if (todo == null)
             {
-
                 _logger.LogInfo("Todo not found");
             }
 
@@ -168,7 +166,6 @@ namespace Time_Tracking.BLL.Implementations
 
             return new UserManagerResponse
             {
-
                 Message = $"The employee {employee.FirstName} {employee.LastName} has started the todo with a title of {todoDto.Title}.",
                 TodoDto = todoDto,
                 IsSuccess = true

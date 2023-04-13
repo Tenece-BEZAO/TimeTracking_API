@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Time_Tracking.BLL.Implementations;
 using Time_Tracking.BLL.Interfaces;
@@ -40,11 +39,8 @@ namespace Time_Tracking.API.Extensions
 
         public static void ConfigureServices(this IServiceCollection services)
         {
-
-
             services.AddScoped<IUnitOfWork, UnitOfWork<Time_Tracking_DbContext>>();
-
-
+            
             services.AddIdentity<ApplicationUser, IdentityRole>()
                     .AddEntityFrameworkStores<Time_Tracking_DbContext>()
                     .AddDefaultTokenProviders();
