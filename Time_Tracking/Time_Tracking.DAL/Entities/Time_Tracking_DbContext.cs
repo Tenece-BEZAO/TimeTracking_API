@@ -25,6 +25,13 @@ namespace Time_Tracking.DAL.Entities
             modelBuilder.ApplyConfiguration(new TodoConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new ApplicationUserConfiguration());
+            modelBuilder.ApplyConfiguration(new AdminConfiguration());
+
+            modelBuilder.Entity<Employee>()
+                .HasOne(e => e.Admin) // Employee has one Admin
+                .WithMany(a => a.Employees) // Admin has many Employees
+                .HasForeignKey(e => e.AdminId) // Foreign key property in Employee entity
+                .IsRequired();
 
             modelBuilder.Entity<Employee>()
                 .HasMany(e => e.Attendance)
@@ -35,7 +42,7 @@ namespace Time_Tracking.DAL.Entities
             modelBuilder.Entity<Employee>()
                 .HasMany(e => e.Todos)
                 .WithOne(t => t.Employee)
-                .HasForeignKey(t => t.EmployeeId) 
+                .HasForeignKey(t => t.EmployeeId)
                 .IsRequired();
 
             modelBuilder.Entity<Attendance>()
@@ -48,7 +55,7 @@ namespace Time_Tracking.DAL.Entities
             modelBuilder.Entity<Todo>()
                 .HasOne(t => t.Employee)
                 .WithMany(e => e.Todos)
-                .HasForeignKey(t => t.EmployeeId) 
+                .HasForeignKey(t => t.EmployeeId)
                 .IsRequired();
 
             modelBuilder.Entity<Todo>()

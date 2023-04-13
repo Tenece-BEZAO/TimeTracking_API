@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
+using Time_Tracking.DAL.Entities.Models;
 
 namespace Time_Tracking.DAL.Entities
 {
@@ -16,6 +17,8 @@ namespace Time_Tracking.DAL.Entities
        
         public ICollection<Attendance> Attendance { get; set; }
         public ICollection<Todo> Todos { get; set; }
+        public int AdminId { get; set; }
+        public Admin Admin { get; }
     }
 
   

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Time_Tracking.DAL.Entities.Models
+﻿namespace Time_Tracking.DAL.Entities.Models
 {
     public class Admin : BaseEntity
     {
@@ -12,6 +6,6 @@ namespace Time_Tracking.DAL.Entities.Models
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        
+        public IEnumerable<Entities.Employee>? Employees { get; set; }
     }
 }
