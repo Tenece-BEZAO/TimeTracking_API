@@ -1,17 +1,14 @@
-﻿
+﻿namespace Time_Tracking.DAL.Interfaces;
 
-namespace Time_Tracking.DAL.Interfaces
+public interface IUnitOfWork : IDisposable
 {
-    public interface IUnitOfWork : IDisposable
-    {
-        IRepository<TEntity> GetRepository<TEntity>() where TEntity : class;
+    IRepository<TEntity> GetRepository<TEntity>() where TEntity : class;
 
-        int SaveChanges();
+    int SaveChanges();
 
-        Task<int> SaveChangesAsync();
-    }
+    Task<int> SaveChangesAsync();
+}
 
-    public interface IUnitOfWork<TContext> : IUnitOfWork
-    {
-    }
+public interface IUnitOfWork<TContext> : IUnitOfWork
+{
 }

@@ -1,92 +1,113 @@
 ﻿using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
 
-namespace Time_Tracking.DAL.Interfaces
+namespace Time_Tracking.DAL.Interfaces;
+
+public interface IRepository<T>
 {
-    public interface IRepository<T>
-    {
-        T Add(T obj);
+    T Add(T obj);
 
-        Task<T> AddAsync(T obj);
+    Task<T> AddAsync(T obj);
 
-        void AddRange(IEnumerable<T> records);
+    void AddRange(IEnumerable<T> records);
 
-        Task AddRangeAsync(IEnumerable<T> records);
+    Task AddRangeAsync(IEnumerable<T> records);
 
-        long Count(Expression<Func<T, bool>> predicate = null);
+    long Count(Expression<Func<T, bool>> predicate = null);
 
-        Task<long> CountAsync(Expression<Func<T, bool>> predicate = null);
+    Task<long> CountAsync(Expression<Func<T, bool>> predicate = null);
 
-        Task<decimal> SumAsync(Expression<Func<T, decimal>> predicate);
+    Task<decimal> SumAsync(Expression<Func<T, decimal>> predicate);
 
-        Task<int> SumAsync(Expression<Func<T, int>> predicate);
+    Task<int> SumAsync(Expression<Func<T, int>> predicate);
 
-        Task<long> SumAsync(Expression<Func<T, long>> predicate);
+    Task<long> SumAsync(Expression<Func<T, long>> predicate);
 
-        bool Delete(Expression<Func<T, bool>> predicate);
+    bool Delete(Expression<Func<T, bool>> predicate);
 
-        bool Delete(T obj);
+    bool Delete(T obj);
 
-        //check here
-        Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate);
-        Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IQueryable<T>> include = null);
+    //check here
+    Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate);
 
-        Task DeleteAsync(Expression<Func<T, bool>> predicate);
+    Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate,
+        Func<IQueryable<T>, IQueryable<T>> include = null);
 
-        Task DeleteAsync(T obj);
+    Task DeleteAsync(Expression<Func<T, bool>> predicate);
 
-        bool DeleteById(object id);
+    Task DeleteAsync(T obj);
 
-        Task DeleteByIdAsync(object id);
+    bool DeleteById(object id);
 
-        bool DeleteRange(Expression<Func<T, bool>> predicate);
+    Task DeleteByIdAsync(object id);
 
-        bool DeleteRange(IEnumerable<T> records);
+    bool DeleteRange(Expression<Func<T, bool>> predicate);
 
-        Task DeleteRangeAsync(Expression<Func<T, bool>> predicate);
+    bool DeleteRange(IEnumerable<T> records);
 
-        Task DeleteRangeAsync(IEnumerable<T> records);
+    Task DeleteRangeAsync(Expression<Func<T, bool>> predicate);
 
-        void Dispose();
+    Task DeleteRangeAsync(IEnumerable<T> records);
 
-        IEnumerable<T> GetAll(Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, params string[] includeProperties);
+    void Dispose();
 
-        Task<IEnumerable<T>> GetAllAsync(Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
-        Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
+    IEnumerable<T> GetAll(Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+        params string[] includeProperties);
 
+    Task<IEnumerable<T>> GetAllAsync(Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+        Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
 
-        IEnumerable<T> GetBy(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, int? skip = null, int? take = null, params string[] includeProperties);
-
-        //Task<PagedList<T>> GetPagedItems(RequestParameters parameters, Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
-
-        Task<IEnumerable<T>> GetByAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, int? skip = null, int? take = null, params string[] includeProperties);
-        Task<IEnumerable<T>> GetByAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, int? skip = null, int? take = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
-        Task<T> GetSingleByAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, int? skip = null, int? take = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool tracking = false);
+    Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null,
+        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+        Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
 
 
-        Task<T> LastAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true);
-        T GetById(object id);
+    IEnumerable<T> GetBy(Expression<Func<T, bool>> predicate = null,
+        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, int? skip = null, int? take = null,
+        params string[] includeProperties);
 
-        Task<T> GetByIdAsync(object id);
+    //Task<PagedList<T>> GetPagedItems(RequestParameters parameters, Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
 
-        Task<bool> AnyAsync(Expression<Func<T, bool>> predicate = null);
+    Task<IEnumerable<T>> GetByAsync(Expression<Func<T, bool>> predicate = null,
+        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, int? skip = null, int? take = null,
+        params string[] includeProperties);
 
-        bool Any(Expression<Func<T, bool>> predicate = null);
+    Task<IEnumerable<T>> GetByAsync(Expression<Func<T, bool>> predicate = null,
+        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, int? skip = null, int? take = null,
+        Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
 
-        IQueryable<T> GetQueryable(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, int? skip = null, int? take = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
+    Task<T> GetSingleByAsync(Expression<Func<T, bool>> predicate = null,
+        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, int? skip = null, int? take = null,
+        Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool tracking = false);
 
-        T GetSingleBy(Expression<Func<T, bool>> predicate);
 
-        Task<T> GetSingleByAsync(Expression<Func<T, bool>> predicate);
+    Task<T> LastAsync(Expression<Func<T, bool>> predicate = null,
+        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+        Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true);
 
-        int Save();
+    T GetById(object id);
 
-        Task<int> SaveAsync();
+    Task<T> GetByIdAsync(object id);
 
-        T Update(T obj);
+    Task<bool> AnyAsync(Expression<Func<T, bool>> predicate = null);
 
-        Task<T> UpdateAsync(T obj);
-        Task UpdateRangeAsync(IEnumerable<T> records);
-        void UpdateRange(IEnumerable<T> records);
-    }
+    bool Any(Expression<Func<T, bool>> predicate = null);
+
+    IQueryable<T> GetQueryable(Expression<Func<T, bool>> predicate = null,
+        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, int? skip = null, int? take = null,
+        Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
+
+    T GetSingleBy(Expression<Func<T, bool>> predicate);
+
+    Task<T> GetSingleByAsync(Expression<Func<T, bool>> predicate);
+
+    int Save();
+
+    Task<int> SaveAsync();
+
+    T Update(T obj);
+
+    Task<T> UpdateAsync(T obj);
+    Task UpdateRangeAsync(IEnumerable<T> records);
+    void UpdateRange(IEnumerable<T> records);
 }

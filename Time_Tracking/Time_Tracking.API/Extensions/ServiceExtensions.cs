@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Time_Tracking.BLL.LoggerService;
-using Time_Tracking.BLL.Repositories;
+using Time_Tracking.BLL.Repository.Manager;
 using Time_Tracking.BLL.Service.Interfaces;
 using Time_Tracking.BLL.Service.Manager;
 using Time_Tracking.DAL.Entities.Models;

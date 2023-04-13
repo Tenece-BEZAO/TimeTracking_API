@@ -4,7 +4,7 @@ using Time_Tracking.DAL.Entities.Models;
 
 namespace Time_Tracking.DAL.Configurations;
 
-public class AdminConfiguration : IEntityTypeConfiguration <Admin>
+public class AdminConfiguration : IEntityTypeConfiguration<Admin>
 {
     public void Configure(EntityTypeBuilder<Admin> builder)
     {

@@ -2,6 +2,7 @@
 using Time_Tracking.BLL.DTOs;
 using Time_Tracking.DAL.Entities;
 using Time_Tracking.DAL.Entities.Enums;
+using Time_Tracking.DAL.Entities.Models;
 using Priority = Time_Tracking.DAL.Entities.Enums.Priority;
 
 namespace Time_Tracking.BLL.MappingProfile

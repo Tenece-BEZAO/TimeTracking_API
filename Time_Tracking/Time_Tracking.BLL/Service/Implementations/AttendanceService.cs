@@ -1,40 +1,39 @@
 ﻿using AutoMapper;
 using Time_Tracking.BLL.DTOs;
 using Time_Tracking.BLL.LoggerService;
-using Time_Tracking.BLL.Repositories;
+using Time_Tracking.BLL.Repository.Manager;
 using Time_Tracking.BLL.Service.Interfaces;
 
-namespace Time_Tracking.BLL.Service.Implementations
+namespace Time_Tracking.BLL.Service.Implementations;
+
+public class AttendanceService : IAttendanceService
 {
-    public class AttendanceService : IAttendanceService
+    private readonly IRepositoryManager _repository;
+    private readonly ILoggerManager _logger;
+    private readonly IMapper _mapper;
+
+    public AttendanceService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
     {
-        private readonly IRepositoryManager _repository;
-        private readonly ILoggerManager _logger;
-        private readonly IMapper _mapper;
+        _repository = repository;
+        _logger = logger;
+        _mapper = mapper;
+    }
 
-        public AttendanceService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
-        {
-            _repository = repository;
-            _logger = logger;
-            _mapper = mapper;
-        }
+    public async Task<IEnumerable<AttendanceDTO>> GetAttendanceByEmployeeAsync(int employeeId)
+    {
+        var attendance = await _repository.Attendance.GetAttendanceByEmployeeAsync(employeeId);
 
-        public async Task<IEnumerable<AttendanceDTO>> GetAttendanceByEmployeeAsync(int employeeId)
-        {
-            var attendance = await _repository.Attendance.GetAttendanceByEmployeeAsync(employeeId);
+        var attendanceDto = _mapper.Map<IEnumerable<AttendanceDTO>>(attendance);
 
-            var attendanceDto = _mapper.Map<IEnumerable<AttendanceDTO>>(attendance);
+        return attendanceDto;
+    }
 
-            return attendanceDto;
-        }
+    public async Task<IEnumerable<AttendanceDTO>> GetAllAttendanceAsync(bool trackChanges)
+    {
+        var attendance = await _repository.Attendance.GetAllAttendanceAsync(trackChanges);
 
-        public async Task<IEnumerable<AttendanceDTO>> GetAllAttendanceAsync(bool trackChanges)
-        {
-            var attendance = await _repository.Attendance.GetAllAttendanceAsync(trackChanges);
+        var attendanceDto = _mapper.Map<IEnumerable<AttendanceDTO>>(attendance);
 
-            var attendanceDto = _mapper.Map<IEnumerable<AttendanceDTO>>(attendance);
-
-            return attendanceDto;
-        }
+        return attendanceDto;
     }
 }

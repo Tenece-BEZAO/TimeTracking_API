@@ -1,9 +1,9 @@
-﻿namespace Time_Tracking.DAL.Entities.Exceptions
+﻿namespace Time_Tracking.DAL.Entities.Exceptions;
+
+public abstract class BadRequestException : Exception
 {
-    public abstract class BadRequestException : Exception
-    {
-        protected BadRequestException(string message)
+    protected BadRequestException(string message)
         : base(message)
-        { }
+    {
     }
 }

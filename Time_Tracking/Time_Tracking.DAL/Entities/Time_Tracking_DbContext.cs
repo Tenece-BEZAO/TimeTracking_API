@@ -7,11 +7,14 @@ namespace Time_Tracking.DAL.Entities
 {
     public class Time_Tracking_DbContext : IdentityDbContext<ApplicationUser>
     {
-        public Time_Tracking_DbContext(DbContextOptions<Time_Tracking_DbContext> options) : base(options)
+        public Time_Tracking_DbContext(DbContextOptions<Time_Tracking_DbContext> options, DbSet<Admin> admins, DbSet<Employee> employees, DbSet<Todo> tasks, DbSet<Attendance> attendances) : base(options)
         {
+            Admins = admins;
+            Employees = employees;
+            Tasks = tasks;
+            Attendances = attendances;
         }
 
-      
 
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Employee> Employees { get; set; }
@@ -21,7 +24,7 @@ namespace Time_Tracking.DAL.Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-          
+
             modelBuilder.ApplyConfiguration(new TodoConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new ApplicationUserConfiguration());
@@ -72,15 +75,5 @@ namespace Time_Tracking.DAL.Entities
                 .HasForeignKey(e => e.UserId)
                 .IsRequired();
         }
-
-
     }
-
-
-
 }
-
-
-
-
-

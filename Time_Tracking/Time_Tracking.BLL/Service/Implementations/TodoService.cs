@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Time_Tracking.BLL.DTOs;
 using Time_Tracking.BLL.LoggerService;
-using Time_Tracking.BLL.Repositories;
+using Time_Tracking.BLL.Repository.Manager;
 using Time_Tracking.BLL.Service.Interfaces;
 using Time_Tracking.DAL.Entities.Exceptions;
 

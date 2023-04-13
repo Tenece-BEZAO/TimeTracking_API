@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Time_Tracking.BLL.Repository.Base;
 using Time_Tracking.BLL.Repository.Interfaces;
+using Time_Tracking.DAL.Entities;
 using Time_Tracking.DAL.Entities.Exceptions;
 using Time_Tracking.DAL.Entities.Models;
 

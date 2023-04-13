@@ -1,6 +1,6 @@
 ﻿using Time_Tracking.BLL.Repository.Interfaces;
 
-namespace Time_Tracking.BLL.Repositories
+namespace Time_Tracking.BLL.Repository.Manager
 {
     public interface IRepositoryManager
     {

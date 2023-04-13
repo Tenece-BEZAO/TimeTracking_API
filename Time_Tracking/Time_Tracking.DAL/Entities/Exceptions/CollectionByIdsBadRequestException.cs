@@ -1,8 +1,8 @@
-﻿namespace Time_Tracking.DAL.Entities.Exceptions
+﻿namespace Time_Tracking.DAL.Entities.Exceptions;
+
+public sealed class CollectionByIdsBadRequestException : BadRequestException
 {
-    public sealed class CollectionByIdsBadRequestException : BadRequestException
+    public CollectionByIdsBadRequestException() : base("Collection count mismatch comparing to ids.")
     {
-        public CollectionByIdsBadRequestException() : base("Collection count mismatch comparing to ids.")
-        { }
     }
 }
