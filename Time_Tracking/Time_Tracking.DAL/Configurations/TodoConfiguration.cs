@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using Time_Tracking.DAL.Entities;
 using Time_Tracking.DAL.Entities.Enums;
-using Time_Tracking.DAL.Entities.Models;
 
 namespace Time_Tracking.DAL.Configurations
 {

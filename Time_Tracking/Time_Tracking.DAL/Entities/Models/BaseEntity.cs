@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Time_Tracking.DAL.Entities.Models
+namespace Time_Tracking.DAL.Entities
 {
     public class BaseEntity
     {
