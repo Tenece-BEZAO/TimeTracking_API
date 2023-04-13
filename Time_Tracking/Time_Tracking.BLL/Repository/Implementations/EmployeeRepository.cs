@@ -28,8 +28,16 @@ namespace Time_Tracking.BLL.Repository.Implementations
             return employee;
         }
 
-        public async Task CreateEmployeeAsync(Employee employee) => Create(employee);
+        public Task CreateEmployeeAsync(Employee employee)
+        {
+            Create(employee);
+            return Task.CompletedTask;
+        }
 
-        public async Task DeleteEmployeeAsync(Employee employee) => Delete(employee);
+        public Task DeleteEmployeeAsync(Employee employee)
+        {
+            Delete(employee);
+            return Task.CompletedTask;
+        }
     }
 }

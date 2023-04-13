@@ -1,14 +1,6 @@
-﻿namespace Time_Tracking.BLL.DTOs
+﻿namespace Time_Tracking.BLL.DTOs;
+
+public class TodoDTO : CreateTodoDTO
 {
-    public class TodoDTO : CreateTodoDTO
-    {
-        public int Id { get; set; }
-    }
-
-
-
-
-
-
-
+    public int Id { get; set; }
 }

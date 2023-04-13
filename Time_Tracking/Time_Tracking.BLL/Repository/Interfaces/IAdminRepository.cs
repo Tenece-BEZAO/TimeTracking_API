@@ -1,9 +1,5 @@
-﻿
+﻿namespace Time_Tracking.BLL.Repository.Interfaces;
 
-namespace Time_Tracking.BLL.Repository.Interfaces
+public interface IAdminRepository
 {
-    public interface IAdminRepository
-    {
-       
-    }
 }

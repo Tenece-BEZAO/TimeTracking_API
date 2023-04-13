@@ -1,19 +1,16 @@
-﻿namespace Time_Tracking.BLL.DTOs
+﻿namespace Time_Tracking.BLL.DTOs;
+
+public enum TodoState
 {
-    public enum TodoState
-    {
-
-        NotStarted,
-        InProgress,
-        Paused,
-        Completed,
-        TimeElapsedAndStillPending
-    }
+    NotStarted,
+    InProgress,
+    Paused,
+    Completed,
+    TimeElapsedAndStillPending
+}
 
 
-    public class TodoStateDTO
-    {
-
-        public string Name { get; set; }
-    }
+public class TodoStateDTO
+{
+    public string Name { get; set; }
 }

@@ -1,17 +1,13 @@
-﻿namespace Time_Tracking.BLL.DTOs
+﻿namespace Time_Tracking.BLL.DTOs;
+
+public enum Priority
 {
-    public enum Priority
-    {
-        Low,
-        Normal,
-        High
-    }
+    Low,
+    Normal,
+    High
+}
 
-    public class PriorityDTO
-    {
-
-
-        public string Name { get; set; }
-    }
-
+public class PriorityDTO
+{
+    public string Name { get; set; }
 }
