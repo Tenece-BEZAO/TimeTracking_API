@@ -13,7 +13,7 @@ namespace Time_Tracking.BLL.Repository.Implementations
         : base(time_Tracking_DbContext)
         { }
 
-        public async Task<List<Employee>> GetAllEmployeesAsync(bool trackChanges) =>
+        public async Task<IEnumerable<Employee>> GetAllEmployeesAsync(bool trackChanges) =>
             await FindAll(trackChanges)
         .OrderBy(c => c.LastName)
         .ToListAsync();

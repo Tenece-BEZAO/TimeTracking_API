@@ -21,11 +21,11 @@ internal sealed class EmployeeService : IEmployeeService
         _mapper = mapper;
     }
 
-    public async Task<List<EmployeeDTO>> GetAllEmployeesAsync(bool trackChanges)
+    public async Task<IEnumerable<EmployeeDTO>> GetAllEmployeesAsync(bool trackChanges)
     {
         var employees = await _repository.Employee.GetAllEmployeesAsync(trackChanges);
 
-        var employeesDto = _mapper.Map<List<EmployeeDTO>>(employees);
+        var employeesDto = _mapper.Map<IEnumerable<EmployeeDTO>>(employees);
 
         return employeesDto;
     }

@@ -11,7 +11,7 @@ public class EmployeeDTO : Employee
         FirstName = firstName;
         LastName = lastName;
         FullName = fullName;
-        Department = department;
+        Department = department; 
     }
 
     public new int Id { get; set; }
