@@ -4,7 +4,6 @@ namespace Time_Tracking.BLL.Repository.Manager
 {
     public interface IRepositoryManager
     {
-        IAdminRepository Admin { get; }
         IEmployeeRepository Employee { get; }
         ITaskRepository Todo { get; }
         IAttendanceRepository Attendance { get; }

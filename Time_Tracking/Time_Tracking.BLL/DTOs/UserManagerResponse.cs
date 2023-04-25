@@ -1,6 +1,4 @@
-﻿using Time_Tracking.BLL.DTOs;
-
-namespace Time_Tracking.DAL.DTOs;
+﻿namespace Time_Tracking.BLL.DTOs;
 
 public class UserManagerResponse
 {

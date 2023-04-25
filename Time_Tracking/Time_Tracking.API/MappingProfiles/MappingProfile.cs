@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Time_Tracking.BLL.DTOs;
 using Time_Tracking.DAL.Entities.Models;
-using Time_Tracking.Shared.DataTransferObjects;
 
 namespace Time_Tracking.API.MappingProfiles;
 

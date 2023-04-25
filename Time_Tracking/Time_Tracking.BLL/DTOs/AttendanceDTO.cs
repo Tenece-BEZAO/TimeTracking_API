@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Time_Tracking.BLL.DTOs;
 
-namespace Time_Tracking.BLL.DTOs
+public class AttendanceDTO
 {
-    public class AttendanceDTO
+    public AttendanceDTO(string employeeId)
     {
-        public string EmployeeId { get; set; }
-        public DateTime ClockIn { get; set; }
-        public DateTime? ClockOut { get; set; }
-        public bool IsAdminOverride { get; set; }
+        EmployeeId = employeeId;
     }
 
+    
+    public string EmployeeId { get; set; }
+    public DateTime ClockIn { get; set; }
+    public DateTime? ClockOut { get; set; }
+    public bool IsAdminOverride { get; set; }
 }

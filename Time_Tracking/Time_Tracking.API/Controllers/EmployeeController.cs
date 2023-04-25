@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Time_Tracking.BLL.DTOs;
 using Time_Tracking.BLL.Interfaces;
-using Time_Tracking.DAL.DTOs;
 using Swashbuckle.AspNetCore.Annotations;
 using static Time_Tracking.DAL.ExceptionHandling.Exceptions.Response;
 

@@ -9,5 +9,10 @@ public enum Priority
 
 public class PriorityDTO
 {
+    public PriorityDTO(string name)
+    {
+        Name = name;
+    }
+
     public string Name { get; set; }
 }

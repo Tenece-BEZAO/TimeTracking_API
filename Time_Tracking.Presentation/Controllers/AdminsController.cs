@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Time_Tracking.BLL.DTOs;
 using Time_Tracking.BLL.Service.Manager;
-using Time_Tracking.Shared.DataTransferObjects;
 
 namespace Time_Tracking.Presentation.Controllers;
 
@@ -33,7 +32,7 @@ public class AdminsController : Controller
     public async Task<IActionResult> CreateEmployeeAsync([FromBody] CreatingEmployeeDto employee)
     {
         var createdEmployee = await _service.EmployeeService.CreateEmployeeAsync(employee);
-        return CreatedAtRoute("EmployeeById", new { name = createdEmployee.FullName }, createdEmployee);
+        return CreatedAtRoute("EmployeeById", new { name = createdEmployee.LastName, createdEmployee.FirstName }, createdEmployee);
     }
 
     //{id:id}

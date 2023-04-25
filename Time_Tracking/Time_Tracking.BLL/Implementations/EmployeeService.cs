@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Text;
 using Time_Tracking.BLL.DTOs;
 using Time_Tracking.BLL.Interfaces;
-using Time_Tracking.DAL.DTOs;
 using Time_Tracking.DAL.Entities.Enums;
 using Time_Tracking.DAL.Entities.Models;
 using Time_Tracking.DAL.ExceptionHandling.Interfaces;
@@ -16,14 +15,14 @@ namespace Time_Tracking.BLL.Implementations;
 public class EmployeeService : IEmployeeService
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly UserManager<ApplicationUser?> _userManager;
     private readonly IRepository<Todo> _todoRepo;
     private readonly IRepository<Attendance> _attendanceRepo;
     private readonly IRepository<Employee> _employeeRepo;
     private readonly IMapper _mapper;
     private readonly ILoggerManager _logger;
 
-    public EmployeeService(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, IMapper mapper,
+    public EmployeeService(IUnitOfWork unitOfWork, UserManager<ApplicationUser?> userManager, IMapper mapper,
         ILoggerManager logger)
     {
         _unitOfWork = unitOfWork;
@@ -44,9 +43,9 @@ public class EmployeeService : IEmployeeService
             _logger.LogError("Invalid Employee Id");
         }
 
-        var attendanceDto = new AttendanceDTO
+        var attendanceDto = new 
         {
-            EmployeeId = employee.Id,
+            EmployeeId = employee?.Id,
             ClockIn = DateTime.Now
         };
 
@@ -176,7 +175,7 @@ public class EmployeeService : IEmployeeService
     {
         var employee = await _employeeRepo.GetFirstOrDefaultAsync(
             e => e.Id.ToString() == employeeId,
-            include: e => e.Include(e => e.Todos)
+            include: e => e.Include(emp => emp.Todos)
         );
 
         if (employee == null)
@@ -217,7 +216,7 @@ public class EmployeeService : IEmployeeService
 
     public async Task<UserManagerResponse> StopTaskAsync(string employeeId, int todoId)
     {
-        int employeeIdInt = Int32.Parse(employeeId);
+        var employeeIdInt = int.Parse(employeeId);
         var employee = await _employeeRepo.GetByIdAsync(employeeIdInt);
         if (employee == null)
         {
@@ -238,7 +237,6 @@ public class EmployeeService : IEmployeeService
 
         task.State = State.Paused;
         await _todoRepo.UpdateAsync(task);
-        var id = task.Id;
 
         var todoDto = _mapper.Map<TodoDTO>(task);
         todoDto.State = new TodoStateDTO { Name = task.State.ToString() };

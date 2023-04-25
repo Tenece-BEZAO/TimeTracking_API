@@ -17,10 +17,10 @@ namespace Time_Tracking.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.4")
+                .HasAnnotation("ProductVersion", "6.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -55,7 +55,7 @@ namespace Time_Tracking.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -80,7 +80,7 @@ namespace Time_Tracking.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -155,7 +155,42 @@ namespace Time_Tracking.DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Time_Tracking.DAL.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("Time_Tracking.DAL.Entities.Models.Admin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Admins");
+                });
+
+            modelBuilder.Entity("Time_Tracking.DAL.Entities.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -232,13 +267,13 @@ namespace Time_Tracking.DAL.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6c7445e4-5fe5-4d92-841d-858109cf4f60",
+                            ConcurrencyStamp = "041dccf4-e5ae-4081-80f4-2298777484b2",
                             EmailConfirmed = false,
                             FirstName = "John",
                             LastName = "Doe",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9063f27b-5dc7-49b7-820a-86d4d513e304",
+                            SecurityStamp = "b8570948-5354-44a7-935e-c36cfc4d065e",
                             TwoFactorEnabled = false,
                             UserName = "john.doe"
                         },
@@ -246,13 +281,13 @@ namespace Time_Tracking.DAL.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3d424bee-6bf2-4c14-9d9a-f4d587d8f22b",
+                            ConcurrencyStamp = "d4488288-ae2f-480f-a5cd-9cb50c41a519",
                             EmailConfirmed = false,
                             FirstName = "Jane",
                             LastName = "Doe",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c51ea325-37e4-4b09-ac14-305324877e1a",
+                            SecurityStamp = "620076a5-3fda-4e5c-9e4a-2d62b81439a6",
                             TwoFactorEnabled = false,
                             UserName = "jane.doe"
                         },
@@ -260,25 +295,25 @@ namespace Time_Tracking.DAL.Migrations
                         {
                             Id = "3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5406e77e-cd35-4039-9f5e-cc25a819bf13",
+                            ConcurrencyStamp = "c4b651c1-281e-4cb4-8af4-8cbf1d363437",
                             EmailConfirmed = false,
                             FirstName = "kendrick",
                             LastName = "chukwuka",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "228dbac6-593e-446c-bead-31c24f306a45",
+                            SecurityStamp = "f0a26f97-1133-489a-bf5b-809c79b151ba",
                             TwoFactorEnabled = false,
                             UserName = "kendrick.chukwuka"
                         });
                 });
 
-            modelBuilder.Entity("Time_Tracking.DAL.Entities.Attendance", b =>
+            modelBuilder.Entity("Time_Tracking.DAL.Entities.Models.Attendance", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("ClockIn")
                         .HasColumnType("datetime2");
@@ -305,13 +340,13 @@ namespace Time_Tracking.DAL.Migrations
                     b.ToTable("Attendances");
                 });
 
-            modelBuilder.Entity("Time_Tracking.DAL.Entities.Employee", b =>
+            modelBuilder.Entity("Time_Tracking.DAL.Entities.Models.Employee", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -339,13 +374,13 @@ namespace Time_Tracking.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Employee");
+                    b.ToTable("Employees");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(2079),
+                            CreatedAt = new DateTime(2023, 4, 14, 16, 57, 8, 194, DateTimeKind.Local).AddTicks(8572),
                             Department = "IT",
                             FirstName = "John",
                             LastName = "Doe",
@@ -354,7 +389,7 @@ namespace Time_Tracking.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(2081),
+                            CreatedAt = new DateTime(2023, 4, 14, 16, 57, 8, 194, DateTimeKind.Local).AddTicks(8576),
                             Department = "HR",
                             FirstName = "Jane",
                             LastName = "Smith",
@@ -363,21 +398,21 @@ namespace Time_Tracking.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(2085),
-                            Department = "Softwares",
+                            CreatedAt = new DateTime(2023, 4, 14, 16, 57, 8, 194, DateTimeKind.Local).AddTicks(8578),
+                            Department = "Software",
                             FirstName = "Kendrick",
                             LastName = "Chukwuka",
                             UserId = "3"
                         });
                 });
 
-            modelBuilder.Entity("Time_Tracking.DAL.Entities.Todo", b =>
+            modelBuilder.Entity("Time_Tracking.DAL.Entities.Models.Todo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -411,15 +446,15 @@ namespace Time_Tracking.DAL.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("Todos");
+                    b.ToTable("Tasks");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1703),
+                            CreatedAt = new DateTime(2023, 4, 14, 16, 57, 8, 194, DateTimeKind.Local).AddTicks(8211),
                             Description = "There's a bug in the login page",
-                            DueAt = new DateTime(2023, 4, 5, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1717),
+                            DueAt = new DateTime(2023, 4, 15, 16, 57, 8, 194, DateTimeKind.Local).AddTicks(8224),
                             EmployeeId = 1,
                             Priority = "Normal",
                             State = "NotStarted",
@@ -428,9 +463,9 @@ namespace Time_Tracking.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1730),
+                            CreatedAt = new DateTime(2023, 4, 14, 16, 57, 8, 194, DateTimeKind.Local).AddTicks(8229),
                             Description = "Update the user manual with new features",
-                            DueAt = new DateTime(2023, 4, 7, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1731),
+                            DueAt = new DateTime(2023, 4, 17, 16, 57, 8, 194, DateTimeKind.Local).AddTicks(8230),
                             EmployeeId = 1,
                             Priority = "Normal",
                             State = "NotStarted",
@@ -439,9 +474,9 @@ namespace Time_Tracking.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1732),
+                            CreatedAt = new DateTime(2023, 4, 14, 16, 57, 8, 194, DateTimeKind.Local).AddTicks(8232),
                             Description = "Interview candidates for the open position",
-                            DueAt = new DateTime(2023, 4, 6, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1733),
+                            DueAt = new DateTime(2023, 4, 16, 16, 57, 8, 194, DateTimeKind.Local).AddTicks(8233),
                             EmployeeId = 2,
                             Priority = "Normal",
                             State = "NotStarted",
@@ -450,9 +485,9 @@ namespace Time_Tracking.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1734),
+                            CreatedAt = new DateTime(2023, 4, 14, 16, 57, 8, 194, DateTimeKind.Local).AddTicks(8234),
                             Description = "Review resumes of the candidates",
-                            DueAt = new DateTime(2023, 4, 5, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1734),
+                            DueAt = new DateTime(2023, 4, 15, 16, 57, 8, 194, DateTimeKind.Local).AddTicks(8234),
                             EmployeeId = 2,
                             Priority = "Normal",
                             State = "NotStarted",
@@ -461,9 +496,9 @@ namespace Time_Tracking.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1735),
+                            CreatedAt = new DateTime(2023, 4, 14, 16, 57, 8, 194, DateTimeKind.Local).AddTicks(8235),
                             Description = "Checking To see workables",
-                            DueAt = new DateTime(2023, 4, 5, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1742),
+                            DueAt = new DateTime(2023, 4, 15, 16, 57, 8, 194, DateTimeKind.Local).AddTicks(8236),
                             EmployeeId = 2,
                             Priority = "Normal",
                             State = "NotStarted",
@@ -472,9 +507,9 @@ namespace Time_Tracking.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2023, 4, 4, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1743),
+                            CreatedAt = new DateTime(2023, 4, 14, 16, 57, 8, 194, DateTimeKind.Local).AddTicks(8237),
                             Description = "SetUp a sprint",
-                            DueAt = new DateTime(2023, 4, 8, 10, 17, 51, 384, DateTimeKind.Local).AddTicks(1744),
+                            DueAt = new DateTime(2023, 4, 18, 16, 57, 8, 194, DateTimeKind.Local).AddTicks(8238),
                             EmployeeId = 3,
                             Priority = "Normal",
                             State = "NotStarted",
@@ -493,7 +528,7 @@ namespace Time_Tracking.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Time_Tracking.DAL.Entities.ApplicationUser", null)
+                    b.HasOne("Time_Tracking.DAL.Entities.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -502,7 +537,7 @@ namespace Time_Tracking.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Time_Tracking.DAL.Entities.ApplicationUser", null)
+                    b.HasOne("Time_Tracking.DAL.Entities.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -517,7 +552,7 @@ namespace Time_Tracking.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Time_Tracking.DAL.Entities.ApplicationUser", null)
+                    b.HasOne("Time_Tracking.DAL.Entities.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -526,16 +561,16 @@ namespace Time_Tracking.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Time_Tracking.DAL.Entities.ApplicationUser", null)
+                    b.HasOne("Time_Tracking.DAL.Entities.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Time_Tracking.DAL.Entities.Attendance", b =>
+            modelBuilder.Entity("Time_Tracking.DAL.Entities.Models.Attendance", b =>
                 {
-                    b.HasOne("Time_Tracking.DAL.Entities.Employee", "Employee")
+                    b.HasOne("Time_Tracking.DAL.Entities.Models.Employee", "Employee")
                         .WithMany("Attendance")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -544,9 +579,9 @@ namespace Time_Tracking.DAL.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("Time_Tracking.DAL.Entities.Employee", b =>
+            modelBuilder.Entity("Time_Tracking.DAL.Entities.Models.Employee", b =>
                 {
-                    b.HasOne("Time_Tracking.DAL.Entities.ApplicationUser", "User")
+                    b.HasOne("Time_Tracking.DAL.Entities.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -555,9 +590,9 @@ namespace Time_Tracking.DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Time_Tracking.DAL.Entities.Todo", b =>
+            modelBuilder.Entity("Time_Tracking.DAL.Entities.Models.Todo", b =>
                 {
-                    b.HasOne("Time_Tracking.DAL.Entities.Employee", "Employee")
+                    b.HasOne("Time_Tracking.DAL.Entities.Models.Employee", "Employee")
                         .WithMany("Todos")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -566,7 +601,7 @@ namespace Time_Tracking.DAL.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("Time_Tracking.DAL.Entities.Employee", b =>
+            modelBuilder.Entity("Time_Tracking.DAL.Entities.Models.Employee", b =>
                 {
                     b.Navigation("Attendance");
 

@@ -5,7 +5,6 @@ using Time_Tracking.BLL.Repository.Manager;
 using Time_Tracking.BLL.Service.Interfaces;
 using Time_Tracking.DAL.Entities.Exceptions;
 using Time_Tracking.DAL.Entities.Models;
-using Time_Tracking.Shared.DataTransferObjects;
 
 namespace Time_Tracking.BLL.Service.Implementations;
 
@@ -22,11 +21,11 @@ internal sealed class EmployeeService : IEmployeeService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<EmployeeDTO>> GetAllEmployeesAsync(bool trackChanges)
+    public async Task<List<EmployeeDTO>> GetAllEmployeesAsync(bool trackChanges)
     {
         var employees = await _repository.Employee.GetAllEmployeesAsync(trackChanges);
 
-        var employeesDto = _mapper.Map<IEnumerable<EmployeeDTO>>(employees);
+        var employeesDto = _mapper.Map<List<EmployeeDTO>>(employees);
 
         return employeesDto;
     }

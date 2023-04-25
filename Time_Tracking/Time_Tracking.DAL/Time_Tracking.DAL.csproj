@@ -26,4 +26,15 @@
     <ProjectReference Include="..\Time_Tracking.Shared\Time_Tracking.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20230407151445_checkDB.cs" />
+    <Compile Remove="Migrations\20230407151445_checkDB.Designer.cs" />
+    <Compile Remove="Migrations\20230407154239_updateadminandemployeetables.cs" />
+    <Compile Remove="Migrations\20230407154239_updateadminandemployeetables.Designer.cs" />
+    <Compile Remove="Migrations\20230414075312_addAdminDB.cs" />
+    <Compile Remove="Migrations\20230414075312_addAdminDB.Designer.cs" />
+    <Compile Remove="Migrations\20230414090413_addAdmin.cs" />
+    <Compile Remove="Migrations\20230414090413_addAdmin.Designer.cs" />
+  </ItemGroup>
+
 </Project>

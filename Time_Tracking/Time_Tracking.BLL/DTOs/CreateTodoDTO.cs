@@ -4,6 +4,17 @@ namespace Time_Tracking.BLL.DTOs;
 
 public class CreateTodoDTO
 {
+    protected CreateTodoDTO(string title, string description, DateTime dueAt, TodoStateDTO state, PriorityDTO priority,
+        DateTime createdAt)
+    {
+        Title = title;
+        Description = description;
+        DueAt = dueAt;
+        State = state;
+        Priority = priority;
+        CreatedAt = createdAt;
+    }
+
     [Required(ErrorMessage = "Title is required")]
     [StringLength(50, ErrorMessage = "Title length should be between 5 to 50 characters", MinimumLength = 5)]
     public string Title { get; set; }

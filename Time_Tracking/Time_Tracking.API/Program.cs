@@ -1,7 +1,9 @@
 using NLog;
 using Microsoft.AspNetCore.HttpOverrides;
 using Time_Tracking.API.Extensions;
+using Time_Tracking.API.MappingProfiles;
 using Time_Tracking.BLL.LoggerService;
+using Time_Tracking.DAL.Seed;
 
 namespace Time_Tracking.API;
 
@@ -21,7 +23,7 @@ public class Program
 
         builder.Services.ConfigureSqlContext(builder.Configuration);
 
-        builder.Services.AddAutoMapper(typeof(Program));
+        builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         // Add services to the container.
 
@@ -60,6 +62,8 @@ public class Program
         app.UseAuthorization();
 
         app.MapControllers();
+        
+        await SeedData.EnsurePopulatedAsync(app);
 
         await app.RunAsync();
     }

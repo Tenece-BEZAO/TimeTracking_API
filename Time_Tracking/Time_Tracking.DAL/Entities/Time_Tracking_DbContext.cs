@@ -7,19 +7,14 @@ namespace Time_Tracking.DAL.Entities
 {
     public class Time_Tracking_DbContext : IdentityDbContext<ApplicationUser>
     {
-        public Time_Tracking_DbContext(DbContextOptions<Time_Tracking_DbContext> options, DbSet<Admin> admins, DbSet<Employee> employees, DbSet<Todo> tasks, DbSet<Attendance> attendances) : base(options)
+        public Time_Tracking_DbContext(DbContextOptions<Time_Tracking_DbContext> options) : base(options)
         {
-            Admins = admins;
-            Employees = employees;
-            Tasks = tasks;
-            Attendances = attendances;
         }
 
-
-        public DbSet<Admin> Admins { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Todo> Tasks { get; set; }
-        public DbSet<Attendance> Attendances { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }       
+        public DbSet<Admin> Admins { get; set; }       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,14 +23,7 @@ namespace Time_Tracking.DAL.Entities
             modelBuilder.ApplyConfiguration(new TodoConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new ApplicationUserConfiguration());
-            modelBuilder.ApplyConfiguration(new AdminConfiguration());
-
-            modelBuilder.Entity<Employee>()
-                .HasOne(e => e.Admin) // Employee has one Admin
-                .WithMany(a => a.Employees) // Admin has many Employees
-                .HasForeignKey(e => e.AdminId) // Foreign key property in Employee entity
-                .IsRequired();
-
+            
             modelBuilder.Entity<Employee>()
                 .HasMany(e => e.Attendance)
                 .WithOne(a => a.Employee)
